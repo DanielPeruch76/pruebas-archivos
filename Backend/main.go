@@ -55,8 +55,8 @@ type Partition struct {
 }
 
 func RecibirComandos(w http.ResponseWriter, req *http.Request) {
-
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:4200")
+	// Cambiar localhost por tu dominio S3
+	w.Header().Set("Access-Control-Allow-Origin", "http://proyecto2-202100639-1.s3-website.us-east-2.amazonaws.com")
 	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
@@ -120,7 +120,8 @@ func RecibirComandos(w http.ResponseWriter, req *http.Request) {
 }
 
 func LoginHandler(w http.ResponseWriter, req *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:4200")
+	// Cambiar localhost por tu dominio S3
+	w.Header().Set("Access-Control-Allow-Origin", "http://proyecto2-202100639-1.s3-website.us-east-2.amazonaws.com")
 	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
@@ -193,7 +194,8 @@ func main() {
 	router.HandleFunc("/login", LoginHandler).Methods("POST", "OPTIONS")
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:4200"},
+		// Cambiar localhost por tu dominio S3
+		AllowedOrigins:   []string{"http://proyecto2-202100639-1.s3-website.us-east-2.amazonaws.com"},
 		AllowedMethods:   []string{"POST", "OPTIONS"},
 		AllowedHeaders:   []string{"Content-Type"},
 		AllowCredentials: true,
