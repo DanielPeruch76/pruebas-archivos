@@ -202,7 +202,7 @@ func main() {
 	handler := c.Handler(router)
 
 	fmt.Println("Servidor escuchando en el puerto 3000")
-	log.Fatal(http.ListenAndServe(":3000", handler))
+	log.Fatal(http.ListenAndServe("0.0.0.0:3000", handler))
 }
 
 func ObtenerParticiones(ruta string) []Partition {
