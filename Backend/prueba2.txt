@@ -1,0 +1,38 @@
+#Crea un disco de 3000 Kb en la carpeta home
+mkdisk -Size=3000 -unit=K -path=./user/disco1.mia
+#No es necesario utilizar comillas para la ruta en este caso ya que
+la ruta no tiene ningún espacio en blanco
+mkdisk -path=./user/disco2.mia -Unit=K -size=3000
+#Se ponen comillas por la carpeta "mis discos" ya que tiene
+espacios en blanco, se crea si no está no existe
+mkdisk -size=5 -unit=M -path="./mis discos/disco3.mia"
+#Creará un disco de 10 Mb ya que no hay parámetro unit
+mkdisk -size=10 -path="./mis discos/disco5.mia"
+#Crea una partición primaria llamada Particion1 de 300kb ​
+#con el peor ajuste en el disco Disco1.mia ​
+fdisk -Size=300 -path=./user/disco2.mia -name=Particion1 ​
+#Crea una partición extendida dentro de Disco2 de 300kb ​
+#Tiene el peor ajuste ​
+fdisk -type=E -path=./user/disco2.mia -Unit=K -name=Particion2 -size=30
+#Crea una partición lógica con el mejor ajuste, llamada Partición 3 de 1 Mb en el Disco3 ​
+fdisk -size=1 -type=L -unit=M -fit=BF -path="./mis discos/disco3.mia" -name="Particion3"
+
+#Intenta crear una partición extendida dentro de Disco2 de 200 kb ​
+#Debería mostrar error ya que ya existe una partición extendida ​
+#dentro de Disco2 ​
+fdisk -type=E -path=./user/disco2.mia -name=Part3 -Unit=K -size=200
+
+
+fdisk -type=L -path=./user/disco2.mia -Unit=K -name=ParticionLogica -size=5
+
+mount -path=./user/disco2.mia -name=Particion1
+mount -path=./user/disco2.mia -name=Particion2
+mount -path="./mis discos/disco3.mia" -name="Particion3"
+mount -path=./user/disco2.mia -name=ParticionLogica
+
+mounted
+
+#Creará un disco de 10 Mb ya que no hay parámetro unit
+mkdisk -size=10 -path="./mis discos/disco4.mia"
+
+mkfs -type=full -id=691A

@@ -1,0 +1,102 @@
+#Crea un disco de 3000 Kb en la carpeta home
+mkdisk -Size=3000 -unit=K -path=./user/disco1.mia
+#No es necesario utilizar comillas para la ruta en este caso ya que
+la ruta no tiene ningún espacio en blanco
+mkdisk -path=./user/disco2.mia -Unit=K -size=3000
+#Se ponen comillas por la carpeta "mis discos" ya que tiene
+espacios en blanco, se crea si no está no existe
+mkdisk -size=5 -unit=M -path="./mis discos/disco3.mia"
+#Creará un disco de 10 Mb ya que no hay parámetro unit
+mkdisk -size=10 -path="./mis discos/disco5.mia"
+#Crea una partición primaria llamada Particion1 de 300kb ​
+#con el peor ajuste en el disco Disco1.mia ​
+fdisk -Size=300 -path=./user/disco2.mia -name=Particion1 ​
+#Crea una partición extendida dentro de Disco2 de 300kb ​
+#Tiene el peor ajuste ​
+fdisk -type=E -path=./user/disco2.mia -Unit=K -name=Particion2 -size=30
+#Crea una partición lógica con el mejor ajuste, llamada Partición 3 de 1 Mb en el Disco3 ​
+fdisk -size=1 -type=L -unit=M -fit=BF -path="./mis discos/disco3.mia" -name="Particion3"
+
+#Intenta crear una partición extendida dentro de Disco2 de 200 kb ​
+#Debería mostrar error ya que ya existe una partición extendida ​
+#dentro de Disco2 ​
+fdisk -type=E -path=./user/disco2.mia -name=Part3 -Unit=K -size=200
+
+
+fdisk -type=L -path=./user/disco2.mia -Unit=K -name=ParticionLogica -size=5
+
+mount -path=./user/disco2.mia -name=Particion2 
+mount -path=./user/disco2.mia -name=Particion1​
+mount -path="./mis discos/disco3.mia" -name="Particion3"
+mount -path=./user/disco2.mia -name=ParticionLogica
+
+mounted
+
+#Creará un disco de 10 Mb ya que no hay parámetro unit
+mkdisk -size=10 -path="./mis discos/disco4.mia"
+
+mkfs -type=full -id=691A
+
+login -user=root -pass=123 -id=691A
+
+mkusr -user=usuarioparaprobarquetanbuenoeselmkuserahora -pass=123444444444444444444444444444444444444444444444444444444444444444444 -grp=root
+
+mkgrp -name=usuarios
+
+rmgrp -name=root
+
+rmgrp -name=root
+
+rmusr -user=root
+
+rmusr -user=root
+
+mkfile -size=15 -path=/home/user/docs/a.txt -r
+
+mkfile -path=/home/user/docs/b.txt -r -cont=/users.txt
+
+cat -file1=/home/user/docs/a.txt -file2=/users.txt -file3=/home/user/docs/b.txt 
+​
+#Crea la carpeta usac​
+#Si no existen las carpetas home user o docs se crean ​
+mkdir -p -path=/home/user/docs/usac​
+​
+#Crea la carpeta "archivos diciembre" #La carpeta padre ya debe
+existir​
+mkdir -path="/home/mis documentos/archivos clases" -p
+​
+mkfile -path=/home/user/docs/usac​/c.txt -size=8
+
+mkfile -path="/home/mis documentos/archivos clases/c.txt" -size=8
+
+cat -file1="/home/mis documentos/archivos clases/c.txt" -file2=/home/user/docs/usac​/c.txt
+
+#Cambia el grupo del user1​
+
+mkgrp -name=grupo69
+
+chgrp -user=usuarioparaprobarquetanbuenoeselmkuserahora -grp=grupo69
+
+rmgrp -name=grupo69
+
+mkgrp -name=grop45
+cat -file=/users.txt
+
+
+
+rep -id=691A -path=./reports/reporte1.jpg -name=mbr
+
+rep -id=691A -path=./reports/reporte2.jpg -name=disk
+
+rep -id=691A -path=./reports/report3.jpg -name=inode
+
+rep -id=691A -path=./reports/report4.jpg -name=block
+
+rep -id=691A -path=./reports/report5.txt -name=bm_inode
+
+rep -id=691A -path=./reports/report6.txt -name=bm_bloc
+
+rep -id=691A -path=./reports/report7.jpg -name=sb
+
+rep -id=691A -path="./archivos clases/c.txt" -path_file_ls="/home/mis documentos/archivos clases/c.txt"-name=file
+
